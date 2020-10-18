@@ -1,0 +1,74 @@
+<div class="text-center m-5">
+  <h1>マイページ</h1>
+</div>
+
+<section class="section">
+  <div id="marginless" class="row">
+    <div class="offset-sm-1 col-sm-2 text-center">
+      <div>
+        <figure>
+          <%#= attachment_image_tag @user, :profile_image, :fill, 1000, 1000,fallback: "no-image.png", class: "profile_image" %>
+        </figure>
+      </div>
+    </div>
+    <div class="col-sm-5 mb-3" id="target">
+      <div class="row mb-3 ml-0">
+        <div class="col-md-2 mr-4 p-0 h4"><%= @user.name %></div>
+        <div class="col-md-4 h5 m-1">
+          <%# if @user.id == current_user.id %>
+            <%= @user.email %>
+          <%# end %>
+        </div>
+      </div>
+      <div><%= @user.profile %></div>
+    </div>
+    <div class="col-sm-4 text-left">
+      <div id="target">
+        <div  id="target1" class="d-flex flex-row mb-3">
+          <%# if @user.id == current_user.id %>
+            <%= link_to edit_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
+              <span>
+                <i class="fas fa-user faa-bounce animated-hover"></i>
+              </span>
+              編集
+            <% end %>
+            <%= link_to user_path(@user), method: :delete, data: { confirm: "本当にユーザ登録を解除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
+              <span>
+                <i class="fas fa-user faa-wrench animated-hover" aria-hidden="true"></i>
+              </span>
+              削除
+            <% end %>
+          <%# end %>
+          <div>
+            <%#= render 'relationships/follow_button', user: @user %>
+          </div>
+        </div>
+        <div id="target1" class="d-flex flex-row mb-3">
+          <%#= link_to followings_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
+            フォロー中
+            <span class="badge badge-success">
+              <%#= @count_followings %>
+            </span>
+          <%# end %>
+          <%#= link_to followers_user_path(@user), class: "btn btn-primary btn-sm" do %>
+            フォロワー
+            <span class="badge badge-secondary">
+              <%#= @count_followers %>
+            </span>
+          <%# end %>
+        </div>
+        <div>
+          <%#= link_to likes_user_path(@user), class: "text-danger btn btn-primary btn-sm" do %>
+            <i class="fas fa-heart fa-lg faa-pulse animated"></i>
+            <span class="badge badge-secondary">
+              <%#= @count_likes %>
+            </span>
+          <%# end %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <%#= render 'cats/cats', cats: @cats %>
+    </div>
+  </div>
+</section>

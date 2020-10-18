@@ -1,0 +1,24 @@
+<% if users.any? %>
+  <div class="row">
+    <% users.each do |user| %>
+    <div class="col-sm-4 mb-4">
+      <div class="card text-center">
+        <div class="card-img-top">
+          <figure class="image pt-3">
+            <%= link_to user_path(user) do %>
+              <%#= attachment_image_tag user, :profile_image, :fill, 1000, 1000, fallback: "no-image.png", class: "profile_image" %>
+            <% end %>
+          </figure>
+        </div>
+        <div class="card_body mb-3">
+          <div><h3><%= link_to user.name, user_path(user) %></h3></div>
+          <div>
+            投稿数：<%#= user.cats.count %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%= paginate users %>
+<% end %>

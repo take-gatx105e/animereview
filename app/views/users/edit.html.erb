@@ -1,0 +1,34 @@
+<div class="text-center mt-5 mb-3">
+  <h1>ユーザ編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name, '名前' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, 'メール' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :profile, 'プロフィール' %>
+        <%= f.text_area :profile, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%#= f.label :profile_image, 'プロフィール画像' %>
+        <%#= f.attachment_field :profile_image, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '編  集', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
