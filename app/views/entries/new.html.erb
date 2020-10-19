@@ -1,2 +1,59 @@
-<h1>Entries#new</h1>
-<p>Find me in app/views/entries/new.html.erb</p>
+<div class="text-center mt-5 mb-3">
+  <h1>アニメ新規投稿</h1>
+</div>
+
+<div class="row mt-3">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @entry, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :introduction, '紹介' %>
+        <%= f.text_area :introduction, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :directedby, '監督' %>
+        <%= f.text_field :directedby, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :screenplay, '脚本' %>
+        <%= f.text_field :screenplay, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :character, 'キャラクターデザイン' %>
+        <%= f.text_field :character, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :cast, 'キャスト' %>
+        <%= f.text_field :cast, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :productioncom, '製作会社' %>
+        <%= f.text_field :productioncom, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :productiontime, '製作時期', for: "entry_productiontime_li" %>
+        <%= f.date_select :productiontime, start_year: 1970, end_year: Time.current.year, use_month_numbers: true, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%#= f.label :cat_image, 'にゃんこ画像' %>
+        <%#= f.attachment_field :cat_image, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '投  稿', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

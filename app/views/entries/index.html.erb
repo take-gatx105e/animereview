@@ -22,6 +22,9 @@
                 </div>
               </div>
               <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">
+                <%= link_to entry.title, entry_path(entry) %>
+              </div>
+              <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">
                 <%= link_to entry.user.name, user_path(entry.user) %>
               </div>
               <div class="col-3 col-sm-3 mt-2 p-0">

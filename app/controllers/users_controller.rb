@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(9)
   end
 
   def new
