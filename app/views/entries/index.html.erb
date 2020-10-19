@@ -1,0 +1,54 @@
+<div class="text-center m-5">
+  <h1>アニメ一覧</h1>
+</div>
+
+<section class="section">
+  <div class="row">
+    <% @entries.each do |entry| %>
+      <div class="col-sm-4 mb-4">
+        <div class="card text-center">
+          <div class="card-image-top">
+            <figure class="image">
+              <%= link_to entry_path(entry) do %>
+                <%#= attachment_image_tag cat, :cat_image, :fill, 1000, 1000, fallback: "no-image.png", class: "cat_image" %>
+              <% end %>
+            </figure>
+          </div>
+          <div class="card_body mb-3">
+            <div class= "row ml-3 mb-2">
+              <div class="col-2 offset-1 col-sm-2 p-0">
+                <div class="">
+                  <%#= attachment_image_tag cat.user, :profile_image, :fill, 48, 48,fallback: "no-image.png", class: "profile_image p-1" %>
+                </div>
+              </div>
+              <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">
+                <%= link_to entry.user.name, user_path(entry.user) %>
+              </div>
+              <div class="col-3 col-sm-3 mt-2 p-0">
+                <%# if current_user.favorited?(cat) %>
+                  <%#= form_with(model: current_user.favorites.find_by(cat_id: cat.id), local: true, method: :delete) do |f| %>
+                    <%#= hidden_field_tag :cat_id, cat.id %>
+                    <%#= button_tag type: 'submit', class: 'text-danger btn btn-link p-0' do %>
+                      <i class="fas fa-heart fa-lg faa-pulse animated"></i>
+                    <%# end %>
+                  <%# end %>
+                <%# else %>
+                  <%#= form_with(model: current_user.favorites.build, local: true) do |f| %>
+                    <%#= hidden_field_tag :cat_id, cat.id %>
+                    <%#= button_tag type: 'submit', class: 'text-primary btn btn-link p-0' do %>
+                      <i class="fas fa-heart fa-lg"></i>
+                    <%# end %>
+                  <%# end %>
+                <%# end %>
+              </div>
+            </div>
+            <div>
+              <time><%= entry.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @entries %>
+  </div>
+</section>

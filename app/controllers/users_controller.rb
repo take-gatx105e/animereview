@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, cxcept: [:new, :create]
+  before_action :require_user_logged_in, except: [:new, :create]
 
   def index
     @users = User.order(id: :desc).page(params[:page]).per(10)
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :profile, :email, :password, :password_confirmation, :new_profile_image)
   end
 end

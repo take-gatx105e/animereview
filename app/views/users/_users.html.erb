@@ -6,6 +6,9 @@
         <div class="card-img-top">
           <figure class="image pt-3">
             <%= link_to user_path(user) do %>
+              <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image.variant(resize: "400x400"), class: "profile_image" %>
+              <% end %>
               <%#= attachment_image_tag user, :profile_image, :fill, 1000, 1000, fallback: "no-image.png", class: "profile_image" %>
             <% end %>
           </figure>

@@ -24,8 +24,8 @@
       </div>
 
       <div class="form-group">
-        <%#= f.label :profile_image, 'プロフィール画像' %>
-        <%#= f.attachment_field :profile_image, class: 'form-control' %>
+        <%= f.label :new_profile_image, 'プロフィール画像' %>
+        <%= f.file_field :new_profile_image, class: 'form-control' %>
       </div>
 
       <%= f.submit '編  集', class: 'btn btn-primary btn-block' %>
