@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, except: [:new, :create]
+  # before_action :require_user_logged_in
 
   def index
     @users = User.order(id: :desc).page(params[:page]).per(10)

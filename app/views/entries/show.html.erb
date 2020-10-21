@@ -15,13 +15,19 @@
           <h4 class="card-title"><%= @entry.title %></h4>
           <table class="table">
             <tr>
-              <th>アピール</th>
+              <th>レビュー</th>
+            </tr>
+            <tr>
+              <td><%= the_first_image(@entry) %></td>
             </tr>
             <tr>
               <td><%= simple_format @entry.introduction %></td>
             </tr>
             <tr>
-              <td><%= @entry.directedby %></td>
+              <td><%= other_images(@entry) %></td>
+            </tr>
+            <tr>
+              <th><%= @entry.directedby %></td>
             </tr>
             <tr>
               <td><%= @entry.screenplay %></td>
@@ -50,6 +56,12 @@
                   <i class="fas fa-cat faa-wrench animated"></i>
                 </span>
                 編集
+              <% end %>
+              <%= link_to entry_images_path(@entry), class: "btn btn-success btn-sm mr-3" do %>
+                <span>
+                  <i class="fas fa-cat faa-wrench animated"></i>
+                </span>
+                画像
               <% end %>
               <%= link_to entry_path(@entry), method: :delete, data: { confirm: "本当にアニメ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
                 <span>

@@ -10,6 +10,7 @@
         <% if logged_in? %>
           <li class="nav-item"><%= link_to 'ユーザ', users_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'アニメ', entries_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%#= link_to 'アニメ画像', entry_entry_images_path(entry), class: 'nav-link' %></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">

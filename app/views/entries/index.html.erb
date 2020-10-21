@@ -9,8 +9,13 @@
         <div class="card text-center">
           <div class="card-image-top">
             <figure class="image">
-              <%= link_to entry_path(entry) do %>
-                <%#= attachment_image_tag cat, :cat_image, :fill, 1000, 1000, fallback: "no-image.png", class: "cat_image" %>
+              <% if entry.images.order(:id)[0].present? %>
+                <%= link_to entry_path(entry) do %>
+                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(resize: "256x>"),
+                alt: entry.images.order(:id)[0].alt_text %>
+                <% end %>
+              <% else %>
+                <%= image_tag "no-image.png", size: "256x256" %>
               <% end %>
             </figure>
           </div>
