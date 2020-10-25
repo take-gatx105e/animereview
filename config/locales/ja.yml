@@ -2,42 +2,32 @@ ja:
   activerecord:
     models:
       user: ユーザ
-      article: ニュース記事
       entry: アニメレビュー
+      entry_image: レビュー画像
+      evaluation: アニメ評価
     attributes:
       user:
+        name: ユーザ名
+        profile: プロフィール
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワードの確認
         new_profile_image: プロフィール画像
         remove_profile_image: 画像を削除
-        number: 背番号
-        name: ユーザー名
-        full_name: 氏名
-        sex: 性別
-        sex_1: 男
-        sex_2: 女
-        birthday: 誕生日
-        email: メールアドレス
-        administrator: 管理者
-        current_password: 現在のパスワード
-        password: 新しいパスワード
-        password_confirmation: 新しいパスワードの確認
-      article:
-        title: タイトル
-        body: 本文
-        released_at: 掲載開始日時
-        expired_at: 掲載終了日時
-        no_expiration: 掲載終了日時を設定しない
-        member_only: 会員限定
       entry:
         title: タイトル
-        body: 本文
-        posted_at: 日時
-        status: 状態
-        status_draft: 下書き
-        status_member_only: 会員限定
-        status_public: 公開
+        introduction: 紹介
+        directedby: 監督
+        screenplay: 脚本
+        character: キャラクターデザイン
+        music: 音楽
+        cast: キャスト
+        productioncom: 製作会社
+        productiontime: 製作時期
       entry_image:
         new_profile_entry_image: 画像ファイル
         alt_text: 代替テキスト
+        position: 位置
       evaluation:
         compreh: 総合
         constitution: 構成

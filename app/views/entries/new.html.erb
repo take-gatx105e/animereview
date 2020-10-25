@@ -10,47 +10,47 @@
       <%= render 'layouts/error_messages', model: f.object %>
       
       <div class="form-group">
-        <%= f.label :title, 'タイトル' %>
+        <%= f.label :title %>
         <%= f.text_field :title, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :introduction, '紹介' %>
+        <%= f.label :introduction %>
         <%= f.text_area :introduction, class: 'form-control', rows: 7 %>
       </div>
 
       <div class="form-group">
-        <%= f.label :directedby, '監督' %>
+        <%= f.label :directedby %>
         <%= f.text_field :directedby, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :screenplay, '脚本' %>
+        <%= f.label :screenplay %>
         <%= f.text_field :screenplay, class: 'form-control' %>
       </div>
       
       <div class="form-group">
-        <%= f.label :character, 'キャラクターデザイン' %>
+        <%= f.label :character %>
         <%= f.text_field :character, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :music, '音楽' %>
+        <%= f.label :music %>
         <%= f.text_field :music, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :cast, 'キャスト' %>
+        <%= f.label :cast %>
         <%= f.text_area :cast, class: 'form-control', rows: 2 %>
       </div>
 
       <div class="form-group">
-        <%= f.label :productioncom, '製作会社' %>
+        <%= f.label :productioncom %>
         <%= f.text_field :productioncom, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :productiontime, '製作時期', for: "entry_productiontime_li" %>
+        <%= f.label :productiontime, for: "entry_productiontime_li" %>
         <%= f.date_select :productiontime, start_year: 1970, end_year: Time.current.year, discard_month:true, discard_day: true, class: 'form-control' %>
       </div>
 
