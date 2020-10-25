@@ -1,14 +1,16 @@
 class EntriesController < ApplicationController
-  before_action :require_user_logged_in
+  # before_action :require_user_logged_in
+  before_action :require_user_logged_in, except: [:index, :show]
   before_action :correct_user, only: [:destroy]
 
   def index
-    @entries = current_user.entries.order(id: :desc).page(params[:page]).per(9)
+    # @entries = current_user.entries.order(id: :desc).page(params[:page]).per(9)
+    @entries = Entry.order(id: :desc).page(params[:page]).per(12)
   end
 
   def show
-    @entry = current_user.entries.find(params[:id])
-    # @entry = Entry.find(params[:id])
+    # @entry = current_user.entries.find(params[:id])
+    @entry = Entry.find(params[:id])
   end
 
   def new
@@ -20,7 +22,7 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.build(entry_params)
     # @entry = current_user.entries.new(entry_params)
     if @entry.save
-      flash[:success] = 'アニメレビューを投稿しました。'
+      flash[:success] = 'アニメレビューの投稿に成功しました。'
       redirect_to @entry
     else
       flash.now[:danger] = 'アニメレビューの投稿に失敗しました。'
@@ -45,7 +47,7 @@ class EntriesController < ApplicationController
 
   def destroy
     @entry.destroy
-    flash[:success] = 'アニメレビューは正常に削除されました。'
+    flash[:success] = 'アニメレビューの削除に成功しました。'
     redirect_to entries_path
   end
 
@@ -60,7 +62,8 @@ class EntriesController < ApplicationController
       :character,
       :cast,
       :productioncom,
-      :productiontime
+      :productiontime,
+      :music
     )
   end
 

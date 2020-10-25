@@ -1,5 +1,6 @@
+<% @page_title = "ユーザ編集" %>
 <div class="text-center mt-5 mb-3">
-  <h1>ユーザ編集</h1>
+  <h1><%= @page_title %></h1>
 </div>
 
 <div class="row">
@@ -28,7 +29,7 @@
         <%= f.file_field :new_profile_image, class: 'form-control' %>
       </div>
 
-      <%= f.submit '編  集', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '編  集', class: 'btn btn-primary btn-block mb-5' %>
     <% end %>
   </div>
 </div>

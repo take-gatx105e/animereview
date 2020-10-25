@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, except: [:new, :create]
-  # before_action :require_user_logged_in
+  # before_action :require_user_logged_in, except: [:new, :create]
+  before_action :require_user_logged_in
 
   def index
     @users = User.order(id: :desc).page(params[:page]).per(10)
@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = 'ユーザは正常に登録されました。'
+      flash[:success] = 'ユーザ登録に成功しました。'
       redirect_to @user
     else
-      flash.now[:danger] = 'ユーザは登録されませんでした。'
+      flash.now[:danger] = 'ユーザ登録に失敗しました。'
       render :new
     end
   end
@@ -33,10 +33,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = 'ユーザは正常に更新されました。'
+      flash[:success] = 'ユーザの更新に成功しました。'
       redirect_to @user
     else
-      flash.now[:danger] = 'ユーザは更新されませんでした。'
+      flash.now[:danger] = 'ユーザの更新に失敗しました。'
       render :edit
     end
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = 'ユーザは正常に削除されました。'
+    flash[:success] = 'ユーザの削除に成功しました。'
     redirect_to root_url
   end
 

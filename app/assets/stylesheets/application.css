@@ -19,3 +19,28 @@
   width: 70%;
   height: 70%;
 }
+
+ .profile_image_mypage {
+  border-radius: 50%;
+  width: 70px;
+  height: 70%;
+}
+
+.entry_image {
+  /*border-radius: 80%;*/
+  width: 100%;
+  height: 100%;
+}
+
+.anirev {
+  font-size: 25px;
+  font-family: 'Abel', sans-serif;
+}
+
+@media screen and (min-width: 1400px) {
+  /*1400px以上で適用する内容*/
+  .container {
+    max-width: 1340px;
+  }
+}
+

@@ -1,5 +1,6 @@
+<% @page_title = "マイページ" %>
 <div class="text-center m-5">
-  <h1>マイページ</h1>
+  <h1><%= @page_title %></h1>
 </div>
 
 <section class="section">
@@ -8,9 +9,8 @@
       <div>
         <figure>
           <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize: "400x400"), class: "profile_image" %>
-              <% end %>
-          <%#= attachment_image_tag @user, :profile_image, :fill, 1000, 1000,fallback: "no-image.png", class: "profile_image" %>
+            <%= image_tag @user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+          <% end %>
         </figure>
       </div>
     </div>
@@ -18,9 +18,9 @@
       <div class="row mb-3 ml-0">
         <div class="col-md-2 mr-4 p-0 h4"><%= @user.name %></div>
         <div class="col-md-4 h5 m-1">
-          <%# if @user.id == current_user.id %>
+          <% if @user.id == current_user.id %>
             <%= @user.email %>
-          <%# end %>
+          <% end %>
         </div>
       </div>
       <div><%= @user.profile %></div>
@@ -28,7 +28,7 @@
     <div class="col-sm-4 text-left">
       <div id="target">
         <div  id="target1" class="d-flex flex-row mb-3">
-          <%# if @user.id == current_user.id %>
+          <% if @user.id == current_user.id %>
             <%= link_to edit_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
               <span>
                 <i class="fas fa-user faa-bounce animated-hover"></i>
@@ -41,11 +41,15 @@
               </span>
               削除
             <% end %>
-          <%# end %>
+          <% end %>
           <div>
             <%#= render 'relationships/follow_button', user: @user %>
           </div>
         </div>
+
+<%
+=begin
+%>     
         <div id="target1" class="d-flex flex-row mb-3">
           <%#= link_to followings_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
             フォロー中
@@ -68,10 +72,14 @@
             </span>
           <%# end %>
         </div>
+<%
+=end
+%>
+
       </div>
     </div>
-    <div>
-      <%= render 'entries/entries', entries: @entries %>
-    </div>
+  </div>
+  <div>
+    <%= render 'entries/entries', entries: @entries %>
   </div>
 </section>

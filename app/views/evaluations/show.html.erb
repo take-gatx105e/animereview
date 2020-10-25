@@ -1,0 +1,55 @@
+<% @page_title = "アニメ評価" %>
+<div class="text-center mt-5 mb-5">
+  <h1><%= @page_title %></h1>
+</div>
+
+<% if @entry.evaluation.present? %>
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th>総合</th>
+        <th>構成</th>
+        <th>演出</th>
+        <th>作画</th>
+        <th>音楽</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center">
+        <td class="align-middle">
+          <%= @entry.evaluation.compreh %>
+        </td>
+        <td>
+          <%= @entry.evaluation.constitution %>
+        </td>
+        <td>
+          <%= @entry.evaluation.directing %>
+        </td>
+        <td>
+          <%= @entry.evaluation.drawing %>
+        </td>
+        <td>
+          <%= @entry.evaluation.music %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <p>評価がありません。</p>
+<% end %>
+
+<%# unless @entry.evaluation.present? %>
+  <%#= link_to '評価', new_entry_evaluation_path(@entry), class: "btn btn-primary btn-sm m-3" %>
+<%# end %>
+<% if @entry.evaluation.present? %>
+  <%= link_to '評価編集', edit_entry_evaluation_path(@entry), class: "btn btn-primary btn-sm m-3" %>
+   <%= link_to entry_evaluation_path(@entry), method: :delete, data: { confirm: "本当にアニメ評価を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
+    <span>
+      <i class="fas fa-cat faa-wrench animated-hover" aria-hidden="true"></i>
+    </span>
+    削除
+  <% end %>
+<% else %>
+  <%= link_to '評価', new_entry_evaluation_path(@entry), class: "btn btn-primary btn-sm m-3" %>
+<% end %>
+<%= link_to 'アニメレビュー', entry_path(@entry), class: "btn btn-primary btn-sm m-3" %>

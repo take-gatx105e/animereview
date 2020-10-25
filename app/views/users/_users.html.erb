@@ -7,16 +7,15 @@
           <figure class="image pt-3">
             <%= link_to user_path(user) do %>
               <% if user.profile_image.attached? %>
-                <%= image_tag user.profile_image.variant(resize: "400x400"), class: "profile_image" %>
+                <%= image_tag user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
               <% end %>
-              <%#= attachment_image_tag user, :profile_image, :fill, 1000, 1000, fallback: "no-image.png", class: "profile_image" %>
             <% end %>
           </figure>
         </div>
         <div class="card_body mb-3">
           <div><h3><%= link_to user.name, user_path(user) %></h3></div>
           <div>
-            投稿数：<%#= user.cats.count %>
+            投稿数：<%= user.entries.count %>
           </div>
         </div>
       </div>

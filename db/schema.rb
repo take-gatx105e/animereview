@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_013546) do
+ActiveRecord::Schema.define(version: 2020_10_25_061649) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_013546) do
     t.date "productiontime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "music"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -55,6 +56,18 @@ ActiveRecord::Schema.define(version: 2020_10_20_013546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["entry_id"], name: "index_entry_images_on_entry_id"
+  end
+
+  create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "entry_id"
+    t.float "compreh"
+    t.float "constitution"
+    t.float "directing"
+    t.float "drawing"
+    t.float "music"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_id"], name: "index_evaluations_on_entry_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,4 +82,5 @@ ActiveRecord::Schema.define(version: 2020_10_20_013546) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "entries", "users"
   add_foreign_key "entry_images", "entries"
+  add_foreign_key "evaluations", "entries"
 end

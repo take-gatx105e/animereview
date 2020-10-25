@@ -1,38 +1,39 @@
 <% @page_title = "ブログ記事の画像" %>
-<h1><%= @page_title %></h1>
-<h2><%= @entry.title %></h2>
+<div class="text-center mt-5 mb-5">
+  <h1><%= @page_title %></h1>
+</div>
 
 <ul class="toolbar">
-  <%= link_to "アニメレビューに戻る", @entry %>
-  <%= link_to "画像の追加", [:new, @entry, :image] %>
+  <%= link_to "アニメレビューに戻る", @entry, class: "btn btn-primary btn-sm m-3" %>
+  <%= link_to "画像の追加", [:new, @entry, :image], class: "btn btn-success btn-sm" %>
 </ul>
 
 <% if @images.present? %>
-  <table class="list">
+  <table class="table">
     <thead>
-      <tr>
-        <th>番号</th>
+      <tr class="text-center">
         <th>画像</th>
         <th>代替テキスト</th>
+        <th>番号</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <% @images.each_with_index do |image, index| %>
-        <tr>
+        <tr class="text-center">
           <td><%= index + 1 %></td>
           <td>
             <%= image_tag image.profile_entry_image.variant(resize: "256x>"),
               alt: image.alt_text %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= image.alt_text %>
           </td>
-          <td>
-            <div>
-              <%= link_to "編集", edit_entry_image_path(@entry, image) %> |
+          <td class="align-middle">
+            <div class="mb-3">
+              <%= link_to "編集", edit_entry_image_path(@entry, image), class: "btn btn-primary btn-sm" %> |
               <%= link_to "削除", entry_image_path(@entry, image),
-                method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                method: :delete, data: { confirm: "本当にアニメ画像を削除してもよろしいですか？" }, class: "btn btn-danger btn-sm" %>
             </div>
             <div>
               <%= link_to_if index > 0, "上へ",

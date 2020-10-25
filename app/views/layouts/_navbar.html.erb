@@ -1,6 +1,6 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="/">とあるアニメの評価目録</a>
+    <a class="navbar-brand anirev" href="/">AnimeReview</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,13 +10,12 @@
         <% if logged_in? %>
           <li class="nav-item"><%= link_to 'ユーザ', users_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'アニメ', entries_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%#= link_to 'アニメ画像', entry_entry_images_path(entry), class: 'nav-link' %></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to 'マイページ', user_path(current_user) %></li>
               <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'アニメレビュー新規投稿', new_entry_path %></li>
+              <li class="dropdown-item"><%= link_to 'レビュー新規投稿', new_entry_path %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
             </ul>

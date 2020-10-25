@@ -1,5 +1,6 @@
+<% @page_title = "新規登録" %>
 <div class="text-center mt-5 mb-3">
-  <h1>新規登録</h1>
+  <h1><%= @page_title %></h1>
 </div>
 
 <div class="row">
@@ -28,7 +29,7 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
-      <%= f.submit '新規登録', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '新規登録', class: 'btn btn-primary btn-block mb-5' %>
     <% end %>
   </div>
 </div>

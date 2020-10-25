@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'toppages#index'
+  root to: 'entries#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :images, controller: "entry_images" do
       patch :move_higher, :move_lower, on: :member
     end
+    resource :evaluation
   end
 end

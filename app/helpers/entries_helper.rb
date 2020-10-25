@@ -15,11 +15,13 @@ module EntriesHelper
     buffer
   end
 
-  private def render_entry_image(image)
+  private
+  
+  def render_entry_image(image)
     content_tag(:div) do
       image_tag image.profile_entry_image.variant(resize: "550x>"),
         alt: image.alt_text,
-        style: "display: block; margin: 0 auto 15px"
+        style: "display: block; margin: 0 auto 15px", class: "entry_image"
     end
   end
 end

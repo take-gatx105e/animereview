@@ -1,12 +1,13 @@
-<% @page_title = "ブログ記事への画像追加" %>
-<div class="text-center mt-5 mb-5">
+<% @page_title = "アニメ評価新規登録" %>
+<div class="text-center mt-5 mb-3">
   <h1><%= @page_title %></h1>
+  <h2><%#= @entry.title %></h2>
 </div>
 
 <div class="row mt-3">
   <div class="col-sm-6 offset-sm-3">
-    <% url = entry_images_path(@entry, @image) %>
-    <%= form_for @image, as: "image", url: url do |f| %>
+    <% url = entry_evaluation_path(@entry) %>
+    <%= form_for @evaluation, as: "evaluation", url: url do |f| %>
       <%= render "form", f: f %>
       <%= f.submit '登  録', class: 'btn btn-primary btn-block mb-5' %>
     <% end %>

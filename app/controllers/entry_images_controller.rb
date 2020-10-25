@@ -20,9 +20,11 @@ class EntryImagesController < ApplicationController
   def create
     @image = @entry.images.build(image_params)
     if @image.save
-      redirect_to [@entry, :images], notice: "画像を作成しました。"
+      flash[:success] = '画像の投稿に成功しました。'
+      redirect_to [@entry, :images]
     else
-      render "new"
+      flash.now[:danger] = '画像の投稿に失敗しました。'
+      render :new
     end
   end
 
@@ -34,16 +36,19 @@ class EntryImagesController < ApplicationController
     @image = @entry.images.find(params[:id])
     @image.assign_attributes(image_params)
     if @image.save
-      redirect_to [@entry, :images], notice: "画像を更新しました。"
+      flash[:success] = '画像の更新に成功しました。'
+      redirect_to [@entry, :images]
     else
-      render "edit"
+      flash.now[:danger] = '画像の更新に失敗しました。'
+      render :edit
     end
   end
 
   def destroy
     @image = @entry.images.find(params[:id])
     @image.destroy
-    redirect_to [@entry, :images], notice: "画像を削除しました。"
+    flash[:success] = '画像の削除に成功しました。'
+    redirect_to [@entry, :images]
   end
 
   # 表示位置を上げる

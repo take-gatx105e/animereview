@@ -1,5 +1,6 @@
+<% @page_title = "レビュー一覧" %>
 <div class="text-center m-5">
-  <h1>アニメ一覧</h1>
+  <h1><%= @page_title %></h1>
 </div>
 
 <section class="section">
@@ -11,43 +12,26 @@
             <figure class="image">
               <% if entry.images.order(:id)[0].present? %>
                 <%= link_to entry_path(entry) do %>
-                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(resize: "256x>"),
+                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(combine_options:{gravity: :center, resize: "1000x600^", crop: "1000x600+0+0"}).processed, class: "entry_image",
                 alt: entry.images.order(:id)[0].alt_text %>
                 <% end %>
               <% else %>
-                <%= image_tag "no-image.png", size: "256x256" %>
+                <%#= image_tag "no-image.png", class: "entry_image" %>
               <% end %>
             </figure>
           </div>
           <div class="card_body mb-3">
             <div class= "row ml-3 mb-2">
-              <div class="col-2 offset-1 col-sm-2 p-0">
+              <div class="col-2 col-sm-2 p-0">
+                <%# 下記のdivを除くと画像の縦横比が崩れ、正方形（円）でなくなる。 %>
                 <div class="">
-                  <%#= attachment_image_tag cat.user, :profile_image, :fill, 48, 48,fallback: "no-image.png", class: "profile_image p-1" %>
+                  <%= link_to user_path(entry.user) do %>
+                    <%= image_tag entry.user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+                <% end %>
                 </div>
               </div>
-              <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">
+              <div class="col-8 offset-sm-2 col-sm-8 mt-2 ml-1 p-0 h4 text-center">
                 <%= link_to entry.title, entry_path(entry) %>
-              </div>
-              <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">
-                <%= link_to entry.user.name, user_path(entry.user) %>
-              </div>
-              <div class="col-3 col-sm-3 mt-2 p-0">
-                <%# if current_user.favorited?(cat) %>
-                  <%#= form_with(model: current_user.favorites.find_by(cat_id: cat.id), local: true, method: :delete) do |f| %>
-                    <%#= hidden_field_tag :cat_id, cat.id %>
-                    <%#= button_tag type: 'submit', class: 'text-danger btn btn-link p-0' do %>
-                      <i class="fas fa-heart fa-lg faa-pulse animated"></i>
-                    <%# end %>
-                  <%# end %>
-                <%# else %>
-                  <%#= form_with(model: current_user.favorites.build, local: true) do |f| %>
-                    <%#= hidden_field_tag :cat_id, cat.id %>
-                    <%#= button_tag type: 'submit', class: 'text-primary btn btn-link p-0' do %>
-                      <i class="fas fa-heart fa-lg"></i>
-                    <%# end %>
-                  <%# end %>
-                <%# end %>
               </div>
             </div>
             <div>

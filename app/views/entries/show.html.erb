@@ -1,83 +1,102 @@
+<% @page_title = "アニメページ" %>
 <div class="text-center m-5">
-  <h1>アニメページ</h1>
+  <h1><%#= @page_title %></h1>
 </div>
 
 <section class="section">
   <div class="row">
-    <div class="col-md-8 mb-3">
+    <div class="col-lg-9 mb-5">
       <div class="card">
-        <div class="card-image-top">
-          <figure class="image">
-            <%#= attachment_image_tag @cat, :cat_image, :fill, 700, 500, fallback: "no-image.png", class: "cat_image" %>
-          </figure>
-        </div>
+        <%# class="card-header" は削除 %>
         <div class="card-body">
-          <h4 class="card-title"><%= @entry.title %></h4>
+          <h1 class="ml-2"><%= @entry.title %></h1>
+          <% if @entry.evaluation.present? %>
+            <h6 class="ml-3">
+              総合☆<%= @entry.evaluation.compreh %>
+              構成☆<%= @entry.evaluation.constitution %>
+              演出☆<%= @entry.evaluation.directing %>
+              作画☆<%= @entry.evaluation.drawing %>
+              音楽☆<%= @entry.evaluation.music %>
+            </h6>
+          <% end %>
           <table class="table">
-            <tr>
-              <th>レビュー</th>
-            </tr>
             <tr>
               <td><%= the_first_image(@entry) %></td>
             </tr>
             <tr>
-              <td><%= simple_format @entry.introduction %></td>
+              <th>レビュー</th>
+            </tr>
+            <tr>
+              <td class="p-4">
+                <%= safe_join(@entry.introduction.split("\n"), tag(:br)) %>
+              </td>
             </tr>
             <tr>
               <td><%= other_images(@entry) %></td>
             </tr>
-            <tr>
-              <th><%= @entry.directedby %></td>
-            </tr>
-            <tr>
-              <td><%= @entry.screenplay %></td>
-            </tr>
-            <tr>
-              <td><%= @entry.character %></td>
-            </tr>
-            <tr>
-              <td><%= simple_format @entry.cast %></td>
-            </tr>
-            <tr>
-              <td><%= @entry.productioncom %></td>
-            </tr>
-            <tr>
-              <td><%= @entry.productiontime %></td>
-            </tr>
-            <tr>
-              <td><%#= simple_format @entry.productioncom %></td>
-            </tr>
           </table>
           
-          <% if @entry.user.id == current_user.id %>
-            <div class="pt-4">
-              <%= link_to edit_entry_path(@entry), class: "btn btn-primary btn-sm m-3" do %>
-                <span>
-                  <i class="fas fa-cat faa-wrench animated"></i>
-                </span>
-                編集
-              <% end %>
-              <%= link_to entry_images_path(@entry), class: "btn btn-success btn-sm mr-3" do %>
-                <span>
-                  <i class="fas fa-cat faa-wrench animated"></i>
-                </span>
-                画像
-              <% end %>
-              <%= link_to entry_path(@entry), method: :delete, data: { confirm: "本当にアニメ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
-                <span>
-                  <i class="fas fa-cat faa-wrench animated-hover" aria-hidden="true"></i>
-                </span>
-                削除
-              <% end %>
-            </div>
+          <% if logged_in? %>
+            <% if @entry.user.id == current_user.id %>
+              <div class="pt-4">
+                <%= link_to edit_entry_path(@entry), class: "btn btn-primary btn-sm m-3" do %>
+                  <span>
+                    <i class="fas fa-cat faa-wrench animated"></i>
+                  </span>
+                  編集
+                <% end %>
+                <%= link_to entry_images_path(@entry), class: "btn btn-success btn-sm mr-3" do %>
+                  <span>
+                    <i class="fas fa-cat faa-wrench animated"></i>
+                  </span>
+                  画像
+                <% end %>
+                <%= link_to entry_evaluation_path(@entry), class: "btn btn-warning btn-sm mr-3" do %>
+                  <span>
+                    <i class="fas fa-cat faa-wrench animated"></i>
+                  </span>
+                  評価
+                <% end %>
+                <%= link_to entry_path(@entry), method: :delete, data: { confirm: "本当にアニメレビューを削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
+                  <span>
+                    <i class="fas fa-cat faa-wrench animated-hover" aria-hidden="true"></i>
+                  </span>
+                  削除
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-lg-3 mb-5">
       <div class="card bg-light">
+        <div class="card-header text-center">
+          <%= @entry.title %> 情報
+        </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table-sm">
+            <tr>
+              <td>監督：<%= simple_format @entry.directedby, class: "text-center" %></td>
+            </tr>
+            <tr>
+              <td>脚本：<%= simple_format @entry.screenplay, class: "text-center" %></td>
+            </tr>
+            <tr>
+              <td>キャラクターデザイン：<%= simple_format @entry.character, class: "text-center" %></td>
+            </tr>
+            <tr>
+              <td>音楽：<%= simple_format @entry.music, class: "text-center" %></td>
+            </tr>
+            <tr>
+              <td>キャスト：<%= simple_format @entry.cast, class: "" %></td>
+            </tr>
+            <tr>
+              <td>制作会社：<%= simple_format @entry.productioncom, class: "text-center" %></td>
+            </tr>
+            <tr>
+              <td>制作年:<%= simple_format @entry.productiontime.strftime("%Y"), class: "text-center" %></td>
+            </tr>
             <tr>
               <td>By <%= @entry.user.name %></td>
             </tr>

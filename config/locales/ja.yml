@@ -38,6 +38,12 @@ ja:
       entry_image:
         new_profile_entry_image: 画像ファイル
         alt_text: 代替テキスト
+      evaluation:
+        compreh: 総合
+        constitution: 構成
+        directing: 演出
+        drawing: 作画
+        music: 音楽
     errors:
       messages:
         invalid_member_name: は半角英数字で入力してください。

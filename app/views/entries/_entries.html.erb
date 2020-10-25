@@ -7,6 +7,17 @@
             <%= link_to entry_path(entry) do %>
               <%#= attachment_image_tag entry, :entry_image, :fill, 1000, 1000, fallback: "no-image.png", class: "entry_image" %>
             <% end %>
+            <% if entry.images.order(:id)[0].present? %>
+                <%= link_to entry_path(entry) do %>
+                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(combine_options:{gravity: :center, resize:"1000x600^", crop:"1000x600+0+0"}).processed, class: "entry_image",
+                alt: entry.images.order(:id)[0].alt_text %>
+                <% end %>
+              <% else %>
+                <%#= image_tag "no-image.png", size: "200x200"#, class: "entry_imagen" %>
+                <div class="mt-4 h4 text-center">
+                <%= link_to entry.title, entry_path(entry) %>
+              </div>
+              <% end %>
           </figure>
         </div>
         <div class="card-body">
@@ -14,7 +25,7 @@
             <div>
               <%= link_to entry_path(entry), class: "btn btn-success btn-sm" do %>
                 <span>
-                  <i class="fas fa-entry faa-bounce animated"></i>
+                  <i class="fas fa-cat faa-bounce animated"></i>
                 </span>
                 詳細
               <% end %>
@@ -23,7 +34,7 @@
               <div>
                 <%= link_to edit_entry_path(entry), class: "btn btn-primary btn-sm" do %>
                   <span>
-                    <i class="fas fa-entry faa-wrench animated"></i>
+                    <i class="fas fa-cat faa-wrench animated"></i>
                   </span>
                   編集
                 <% end %>
@@ -31,7 +42,7 @@
               <div>
                 <%= link_to entry_path(entry), method: :delete, data: { confirm: "本当ににゃんこ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
                   <span>
-                    <i class="fas fa-entry faa-wrench animated-hover" aria-hidden="true"></i>
+                    <i class="fas fa-cat faa-wrench animated-hover" aria-hidden="true"></i>
                   </span>
                   削除
                 <% end %>
