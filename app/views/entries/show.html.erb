@@ -75,7 +75,7 @@
               <td>制作会社：<%= simple_format @entry.productioncom, class: "text-center" %></td>
             </tr>
             <tr>
-              <td>制作年:<%= simple_format @entry.productiontime.strftime("%Y"), class: "text-center" %></td>
+              <td>制作年:<%= simple_format @entry.productiontime&.strftime("%Y"), class: "text-center" %></td>
             </tr>
             <tr>
               <td>By <%= @entry.user.name %></td>

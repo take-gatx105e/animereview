@@ -25,8 +25,10 @@
               <div class="col-2 col-sm-2 p-0">
                 <%# 下記のdivを除くと画像の縦横比が崩れ、正方形（円）でなくなる。 %>
                 <div class="">
-                  <%= link_to user_path(entry.user) do %>
-                    <%= image_tag entry.user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+                  <% if entry.user.profile_image.attached? %>
+                    <%= link_to user_path(entry.user) do %>
+                      <%= image_tag entry.user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+                  <% end %>
                 <% end %>
                 </div>
               </div>

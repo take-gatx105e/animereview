@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+User.create(
+  name: Rails.application.credentials.user[:name],
+  email: Rails.application.credentials.user[:email],
+  password: Rails.application.credentials.user[:password]
+)
+
+User.create(
+  name: Rails.application.credentials.user[:name1],
+  email: Rails.application.credentials.user[:email1],
+  password: Rails.application.credentials.user[:password1]
+)
