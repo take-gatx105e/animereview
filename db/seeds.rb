@@ -18,5 +18,3 @@ User.create(
   email: Rails.application.credentials.user[:email1],
   password: Rails.application.credentials.user[:password1]
 )
-
-Entry.create(user_id: 1, title: 'SHIROBAKO', introduction: 'SHIROBAKOのレビューです！')
