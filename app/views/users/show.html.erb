@@ -9,6 +9,7 @@
       <div>
         <figure>
           <% if @user.profile_image.attached? %>
+            <%#= image_tag @user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
             <%= image_tag @user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
           <% end %>
         </figure>
