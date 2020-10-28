@@ -9,7 +9,7 @@
       <div class="card">
         <%# class="card-header" は削除 %>
         <div class="card-body">
-          <h1 class="ml-2"><%= @entry.title %></h1>
+          <h1 class="ml-2"><%= simple_format @entry.title %></h1>
           <% if @entry.evaluation.present? %>
             <h6 class="ml-3">
               総合☆<%= @entry.evaluation.compreh %>
