@@ -44,3 +44,12 @@
   }
 }
 
+@media screen and (max-width:575px) {
+  /*575px以下で適用する内容*/
+  #target {
+    text-align: center;
+  }
+  #target1 {
+    justify-content: center;
+  }
+}
