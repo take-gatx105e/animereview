@@ -81,7 +81,7 @@
               <td>By <%= @entry.user.name %></td>
             </tr>
             <tr>
-              <td><%= @entry.user.profile %></td>
+              <td><%= simple_format @entry.user.profile %></td>
             </tr>
             <tr>
               <td>
@@ -98,4 +98,9 @@
       </div>
     </div>
   </div>
+
+<div class="text-center mb-5"> 
+  <%= link_to "twitter", "https://twitter.com/natsuKageT/", target: :_blank, rel: "noopener noreferrer" %> |
+&copy 2020 sakai...<%#= link_to "sakai...", "https://myportfolioproject-e9828.web.app/", target: :_blank, rel: "noopener noreferrer" %>.
+</div>
 </section>
