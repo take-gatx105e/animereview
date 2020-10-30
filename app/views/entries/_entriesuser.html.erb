@@ -1,0 +1,36 @@
+<div class="row mt-3">
+  <% entries.each do |entry| %>
+    <div class="col-sm-4 mb-4 mt-4">
+      <div class="card text-center">
+        <div class="card-image-top">
+          <figure class="image">
+            <% if entry.images.order(:id)[0].present? %>
+                <%= link_to entry_path(entry) do %>
+                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(combine_options:{gravity: :center, resize:"1000x600^", crop:"1000x600+0+0"}).processed, class: "entry_image",
+                alt: entry.images.order(:id)[0].alt_text %>
+                <% end %>
+              <% else %>
+                <%#= image_tag "no-image.png", size: "200x200"#, class: "entry_imagen" %>
+                <div class="mt-4 h4 text-center">
+                <%= link_to entry.title, entry_path(entry) %>
+              </div>
+              <% end %>
+          </figure>
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-center mb-3">
+              <%= link_to '詳 細', entry_path(entry), class: "btn btn-success btn-sm mr-3" %>
+            <% if entry.user.id == current_user.id %>
+                <%= link_to '編 集', edit_entry_path(entry), class: "btn btn-primary btn-sm mr-3" %>
+                <%= link_to '削 除', entry_path(entry), method: :delete, data: { confirm: "本当にアニメレビューを削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </div>
+          <div>
+            <time><%= entry.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate entries %>
+</div>

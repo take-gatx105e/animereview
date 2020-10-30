@@ -1,36 +1,36 @@
-<div class="row mt-3">
-  <% entries.each do |entry| %>
-    <div class="col-sm-4 mb-4 mt-4">
-      <div class="card text-center">
-        <div class="card-image-top">
-          <figure class="image">
-            <% if entry.images.order(:id)[0].present? %>
-                <%= link_to entry_path(entry) do %>
-                  <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(combine_options:{gravity: :center, resize:"1000x600^", crop:"1000x600+0+0"}).processed, class: "entry_image",
-                alt: entry.images.order(:id)[0].alt_text %>
-                <% end %>
-              <% else %>
-                <%#= image_tag "no-image.png", size: "200x200"#, class: "entry_imagen" %>
-                <div class="mt-4 h4 text-center">
-                <%= link_to entry.title, entry_path(entry) %>
-              </div>
-              <% end %>
-          </figure>
-        </div>
-        <div class="card-body">
-          <div class="d-flex justify-content-center mb-3">
-              <%= link_to '詳 細', entry_path(entry), class: "btn btn-success btn-sm mr-3" %>
-            <% if entry.user.id == current_user.id %>
-                <%= link_to '編 集', edit_entry_path(entry), class: "btn btn-primary btn-sm mr-3" %>
-                <%= link_to '削 除', entry_path(entry), method: :delete, data: { confirm: "本当ににゃんこ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" %>
+<div class="col-sm-4 mb-4">
+  <div class="card text-center">
+    <div class="card-image-top">
+      <figure class="image">
+        <% if entry.images.order(:id)[0].present? %>
+          <%= link_to entry_path(entry) do %>
+            <%= image_tag entry.images.order(:id)[0].profile_entry_image.variant(combine_options:{gravity: :center, resize: "1000x600^", crop: "1000x600+0+0"}).processed, class: "entry_image",
+          alt: entry.images.order(:id)[0].alt_text %>
+          <% end %>
+        <% else %>
+          <%#= image_tag "no-image.png", class: "entry_image" %>
+        <% end %>
+      </figure>
+    </div>
+    <div class="card_body mb-3">
+      <div class= "row ml-3 mb-2">
+        <div class="col-2 col-sm-2 p-0">
+          <%# 下記のdivを除くと画像の縦横比が崩れ、正方形（円）でなくなる。 %>
+          <div class="">
+            <% if entry.user.profile_image.attached? %>
+              <%= link_to user_path(entry.user) do %>
+                <%= image_tag entry.user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
             <% end %>
+          <% end %>
           </div>
-          <div>
-            <time><%= entry.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-          </div>
+        </div>
+        <div class="col-8 offset-sm-2 col-sm-8 mt-2 ml-1 p-0 h4 text-center">
+          <%= link_to entry.title, entry_path(entry) %>
         </div>
       </div>
+      <div>
+        <time><%= entry.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+      </div>
     </div>
-  <% end %>
-  <%= paginate entries %>
+  </div>
 </div>

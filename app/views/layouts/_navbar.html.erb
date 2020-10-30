@@ -8,6 +8,10 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
+          <li class="nav-item"><%= link_to '☆5.0', hoshi50_user_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.5', hoshi45_user_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.2', hoshi42_user_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.0', hoshi40_user_path(current_user), class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ユーザ', users_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'アニメ', entries_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
@@ -21,7 +25,12 @@
             </ul>
           </li>
         <% else %>
-          <li class="nav-item"><%= link_to '新規登録', signup_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆5.0', hoshi50_user_path(User.first), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.5', hoshi45_user_path(User.first), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.2', hoshi42_user_path(User.first), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '☆4.0', hoshi40_user_path(User.first), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'アニメ', entries_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%#= link_to '新規登録', signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
         <% end %>
       </ul>

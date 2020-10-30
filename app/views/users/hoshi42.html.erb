@@ -1,0 +1,17 @@
+<% @page_title = "レビュー☆4.2 一覧" %>
+<div class="text-center m-5">
+  <h1><%= @page_title %></h1>
+</div>
+
+<div class="row">
+  <% if @entries.present? %>
+    <% @entries.each do |entry| %>
+      <% if entry.evaluation.compreh == 4.2 %>
+        <%= render "entries/entries", entry: entry %>
+      <% end %>
+    <% end %>
+    <%= paginate @entries %>
+  <% else %>
+    <p>レビューがありません。</p>
+  <% end %>
+</div>

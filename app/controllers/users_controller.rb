@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :require_user_logged_in, except: [:new, :create]
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, except: [:hoshi50, :hoshi45, :hoshi42, :hoshi40]
 
   def index
     @users = User.order(id: :desc).page(params[:page]).per(10)
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @entries = @user.entries.order(id: :desc).page(params[:page]).per(9)
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(12)
   end
 
   def new
@@ -46,6 +46,26 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = 'ユーザの削除に成功しました。'
     redirect_to root_url
+  end
+
+  def hoshi50
+    @user = User.find(params[:id])
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(12)
+  end
+
+  def hoshi45
+    @user = User.find(params[:id])
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(12)
+  end
+
+  def hoshi42
+    @user = User.find(params[:id])
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(12)
+  end
+
+  def hoshi40
+    @user = User.find(params[:id])
+    @entries = @user.entries.order(id: :desc).page(params[:page]).per(12)
   end
 
   private

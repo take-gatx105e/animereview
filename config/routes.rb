@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
-  resources :users
+  resources :users do
+    member do
+      get :hoshi50
+      get :hoshi45
+      get :hoshi42
+      get :hoshi40
+    end
+  end
   resources :entries do
     resources :images, controller: "entry_images" do
       patch :move_higher, :move_lower, on: :member
